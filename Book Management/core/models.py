@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 
 class Categories(models.Model):
-    name = models.CharField(max_length=30, unique=True)
+    name = models.CharField(max_length=200, unique=True)
 
     class Meta:
         db_table = 'categories'
@@ -14,7 +14,7 @@ class Categories(models.Model):
 
 
 class Languages(models.Model):
-    name = models.CharField(max_length=30, unique=True)
+    name = models.CharField(max_length=50, unique=True)
 
     class Meta:
         db_table = 'languages'
