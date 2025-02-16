@@ -15,14 +15,13 @@
             <div class="jumbotron p-3">
 
 
-                    <div style="position: relative;">
+                <div style="position: relative;">
 
-                        <h2 style="display: flex; justify-content: center; align-items: center; width: 100%; font-family: 'Noto Serif Georgian', cursive; padding-block: 5px">
-                            <b>📚 Welcome to Book Manager 📚</b>
-                        </h2>
+                    <h2 style="display: flex; justify-content: center; align-items: center; width: 100%; font-family: 'Noto Serif Georgian', cursive; padding-block: 5px">
+                        <b>📚 Welcome to Book Manager 📚</b>
+                    </h2>
 
-                    </div>
-
+                </div>
 
 
                 <img src="/media/library-book-bookshelf-read.jpg"
@@ -30,189 +29,194 @@
                      alt="..."
                      style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
 
-                </div>
+            </div>
             <form style="padding-left: 77%; padding-bottom: 7px;" class="d-flex" role="search">
-                <input class="form-control" type="search"  placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success me-3" type="submit" style="font-family: 'Ubuntu', 'sans-serif'; font-weight: bold">Search</button>
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success me-3" type="submit"
+                        style="font-family: 'Ubuntu', 'sans-serif'; font-weight: bold">Search
+                </button>
             </form>
 
 
-                <table class="table table-hover table-dark">
+            <table class="table table-hover table-dark">
 
-                    <tr valign="middle" style="font-family: 'Special Elite', 'cursive'">
-                        <th>ID</th>
-                        <th>Title/სახელი</th>
-                        <th>Author/ავტორი</th>
-                        <th>Description/აღწერა</th>
-                        <th>Language/ენა</th>
-                        <th>Publication Year/გამოშვების წელი</th>
-                        <th>Genre/ჟანრი</th>
-                        <th>Shelf/თარო</th>
-                        <th style="font-family: 'Noto Serif Georgian', 'cursive'"><a href="{% url 'add_book' %}">
-                            <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#mymodal" style="font-weight: bold; width: 150px; height: 40px;">
-                                Add New Book
-                            </button>
-                        </a></th>
-                    </tr>
+                <tr valign="middle" style="font-family: 'Special Elite', 'cursive'">
+                    <th>ID</th>
+                    <th>Title/სახელი</th>
+                    <th>Author/ავტორი</th>
+                    <th>Description/აღწერა</th>
+                    <th>Language/ენა</th>
+                    <th>Publication Year/გამოშვების წელი</th>
+                    <th>Genre/ჟანრი</th>
+                    <th>Shelf/თარო</th>
+                    <th style="font-family: 'Noto Serif Georgian', 'cursive'"><a href="{% url 'add_book' %}">
+                        <button type="button" class="btn btn-success" data-toggle="modal"
+                                data-target="#mymodal" style="font-weight: bold; width: 150px; height: 40px;">
+                            Add New Book
+                        </button>
+                    </a></th>
+                </tr>
 
-                    <!-- for data info -->
+                <!-- for data info -->
 
-                    {% for book in books %}
-                    <tr style="font-family: 'Noto Serif Georgian', cursive;" valign="middle">
-                        <td>{{ book.id }}</td>
-                        <td>{{ book.title }}</td>
-                        <td>{{ book.author }}</td>
-                        <td>
-                                                    <!-- Button trigger modal -->
-                            <button type="button" class="btn" style="background-color: #0DCAF0; color: black; font-weight: bold" data-bs-toggle="modal" data-bs-target="#exampleModal{{ book.id }}">
-                                View Description
-                            </button>
+                {% for book in books %}
+                <tr style="font-family: 'Noto Serif Georgian', cursive;" valign="middle">
+                    <td>{{ book.id }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn"
+                                style="background-color: #0DCAF0; color: black; font-weight: bold"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal{{ book.id }}">
+                            View Description
+                        </button>
 
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal{{ book.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog">
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal{{ book.id }}" tabindex="-1"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
                                 <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">{{ book.title }}</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                  </div>
-                                  <div class="modal-body">
-                                    {{ book.description }}
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                  </div>
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{ book.title }}</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {{ book.description }}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                        </button>
+                                    </div>
                                 </div>
-                              </div>
                             </div>
-                        </td>
-                        <td>{{ book.language }}</td>
-                        <td>{{ book.publication_year }}</td>
-                        <td>{{ book.genre }}</td>
-                        <td>{{ book.shelf }}</td>
-                        <td>
-                            <a href="/book/update/{{ book.id }}" class="btn btn-warning btn-xs" data-toggle="modal"
-                               data-target="#modaledit{{ book.id }}">Edit</a>
+                        </div>
+                    </td>
+                    <td>{{ book.language }}</td>
+                    <td>{{ book.publication_year }}</td>
+                    <td>{{ book.genre }}</td>
+                    <td>{{ book.shelf }}</td>
+                    <td>
+                        <a href="/book/update/{{ book.id }}" class="btn btn-warning btn-xs" data-toggle="modal"
+                           data-target="#modaledit{{ book.id }}">Edit</a>
 
-                            <form action="/book/delete/{{ book.id }}/" method="post" style="display: inline;">
-                                {% csrf_token %}
-                                <button class="btn btn-danger btn-xs" type="submit"
-                                        onclick="return confirm('Are you sure to delete?')">Delete
-                                </button>
-                            </form>
-
-
-                        </td>
-
-                    </tr>
+                        <form action="/book/delete/{{ book.id }}/" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button class="btn btn-danger btn-xs" type="submit"
+                                    onclick="return confirm('Are you sure to delete?')">Delete
+                            </button>
+                        </form>
 
 
+                    </td>
 
-                    <div id="modaledit{{ book.id }}" class="modal fade" role="dialog">
-
-                        <div class="modal-dialog">
-
-                            <div class="modal-content">
-
-                                <div class="modal-header">
-
-                                    <h4 class="modal-title"> Update Book</h4>
+                </tr>
 
 
-                                </div>
+                <div id="modaledit{{ book.id }}" class="modal fade" role="dialog">
 
-                                <div class="modal-body">
+                    <div class="modal-dialog">
 
+                        <div class="modal-content">
 
-                                    <form action="/book/update/{{ book.id }}" method="post">
+                            <div class="modal-header">
 
-
-                                        <div class="form-group">
-
-                                            <label>Title</label>
-                                            <input type="hidden" name="id" value="{{ book.title }}">
-                                            <input type="text" class="form-control" name="Title"
-                                                   value="">
-
-                                        </div>
-
-                                        <div class="form-group">
-
-                                            <label>Author</label>
-                                            <input type="hidden" name="id" value="{{ book.author }}">
-                                            <input type="text" class="form-control" name="Title"
-                                                   value="">
-
-                                        </div>
-
-
-                                        <div class="form-group">
-
-                                            <label>Description</label>
-                                            <input type="hidden" name="id" value="{{ book.description }}">
-                                            <input type="text" class="form-control" name="Title"
-                                                   value="">
-
-                                        </div>
-
-
-                                        <div class="form-group">
-
-                                            <label>Language</label>
-                                            <input type="hidden" name="id" value=" {{ book.language }}">
-                                            <input type="text" class="form-control" name="Title"
-                                                   value="">
-
-                                        </div>
-
-
-                                        <div class="form-group">
-
-                                            <label>Publication Year</label>
-                                            <input type="hidden" name="id" value="{{ book.publication_year }}">
-                                            <input type="text" class="form-control" name="Title"
-                                                   value="">
-
-                                        </div>
-
-
-
-                                        <div class="form-group">
-
-                                            <button class="btn btn-primary" type="submit">Update</button>
-
-                                        </div>
-
-
-                                    </form>
-
-                                </div>
-
-                                <div class="modal-footer">
-
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                                </div>
+                                <h4 class="modal-title"> Update Book</h4>
 
 
                             </div>
+
+                            <div class="modal-body">
+
+
+                                <form action="/book/update/{{ book.id }}" method="post">
+
+
+                                    <div class="form-group">
+
+                                        <label>Title</label>
+                                        <input type="hidden" name="id" value="{{ book.title }}">
+                                        <input type="text" class="form-control" name="Title"
+                                               value="">
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <label>Author</label>
+                                        <input type="hidden" name="id" value="{{ book.author }}">
+                                        <input type="text" class="form-control" name="Title"
+                                               value="">
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label>Description</label>
+                                        <input type="hidden" name="id" value="{{ book.description }}">
+                                        <input type="text" class="form-control" name="Title"
+                                               value="">
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label>Language</label>
+                                        <input type="hidden" name="id" value=" {{ book.language }}">
+                                        <input type="text" class="form-control" name="Title"
+                                               value="">
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label>Publication Year</label>
+                                        <input type="hidden" name="id" value="{{ book.publication_year }}">
+                                        <input type="text" class="form-control" name="Title"
+                                               value="">
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <button class="btn btn-primary" type="submit">Update</button>
+
+                                    </div>
+
+
+                                </form>
+
+                            </div>
+
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                            </div>
+
 
                         </div>
 
                     </div>
-                    {% endfor %}
+
+                </div>
+                {% endfor %}
 
 
-                </table>
-
-            </div>
-
+            </table>
 
         </div>
 
+
     </div>
+
+</div>
 
 
 </div>
