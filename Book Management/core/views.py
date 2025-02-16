@@ -12,7 +12,7 @@ def book_list(request):
 
 def add_book(request):
     if request.method == 'POST':
-        form = BookForm(request.POST)
+        form = BookForm(request.POST, request.FILES)
         if form.is_valid():
             book = form.save()
             return redirect('book_list')
@@ -31,7 +31,7 @@ def delete_book(request, book_id):
 def update_book(request, book_id):
     book = Books.objects.get(id=book_id)
     if request.method == 'POST':
-        form = BookForm(request.POST, instance=book)
+        form = BookForm(request.POST, request.FILES, instance=book)
         if form.is_valid():
             book = form.save()
             return redirect('book_list')

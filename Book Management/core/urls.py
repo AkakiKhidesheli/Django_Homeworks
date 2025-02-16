@@ -9,6 +9,3 @@ urlpatterns = [
     path('book/delete/<int:book_id>/', views.delete_book, name='delete_book'),
     path('book/update/<int:book_id>/', views.update_book, name='update_book'),
 ]
-
-if settings.DEBUG:
-    urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
