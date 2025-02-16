@@ -26,3 +26,15 @@ def delete_book(request, book_id):
     if request.method == 'POST':
         book.delete()
         return redirect('book_list')
+
+
+def update_book(request, book_id):
+    book = Books.objects.get(id=book_id)
+    if request.method == 'POST':
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            book = form.save()
+            return redirect('book_list')
+    else:
+        form = BookForm(instance=book)
+        return render(request, 'books/update_book.html', {'form': form})

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %} Library {% endblock %}
+{% block title %} Book Manager {% endblock %}
 {% block content %}
 
 <style>
@@ -37,16 +37,16 @@
 
                     <tr valign="middle" style="font-family: 'Special Elite', 'cursive'">
                         <th>ID</th>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Description</th>
-                        <th>Language</th>
-                        <th>Publication Year</th>
-                        <th>Genre</th>
-                        <th>Shelf</th>
+                        <th>Title/სახელი</th>
+                        <th>Author/ავტორი</th>
+                        <th>Description/აღწერა</th>
+                        <th>Language/ენა</th>
+                        <th>Publication Year/გამოშვების წელი</th>
+                        <th>Genre/ჟანრი</th>
+                        <th>Shelf/თარო</th>
                         <th style="font-family: 'Noto Serif Georgian', 'cursive'"><a href="{% url 'add_book' %}">
                             <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#mymodal" style="font-weight: bold;">
+                                    data-target="#mymodal" style="font-weight: bold; width: 150px; height: 40px;">
                                 Add New Book
                             </button>
                         </a></th>
@@ -61,7 +61,7 @@
                         <td>{{ book.author }}</td>
                         <td>
                                                     <!-- Button trigger modal -->
-                            <button type="button" class="btn" style="background-color: #0DCAF0; color: black; font-weight: bold;" data-bs-toggle="modal" data-bs-target="#exampleModal{{ book.id }}">
+                            <button type="button" class="btn" style="background-color: #0DCAF0; color: black; font-weight: bold" data-bs-toggle="modal" data-bs-target="#exampleModal{{ book.id }}">
                                 View Description
                             </button>
 
@@ -89,7 +89,7 @@
                         <td>{{ book.genre }}</td>
                         <td>{{ book.shelf }}</td>
                         <td>
-                            <a href="" class="btn btn-warning btn-xs" data-toggle="modal"
+                            <a href="/book/update/{{ book.id }}" class="btn btn-warning btn-xs" data-toggle="modal"
                                data-target="#modaledit{{ book.id }}">Edit</a>
 
                             <form action="/book/delete/{{ book.id }}/" method="post" style="display: inline;">
@@ -122,13 +122,13 @@
                                 <div class="modal-body">
 
 
-                                    <form action="/update/{{ book.id }}" method="post">
+                                    <form action="/book/update/{{ book.id }}" method="post">
 
 
                                         <div class="form-group">
 
                                             <label>Title</label>
-                                            <input type="hidden" name="id" value="">
+                                            <input type="hidden" name="id" value="{{ book.title }}">
                                             <input type="text" class="form-control" name="Title"
                                                    value="">
 
@@ -137,7 +137,7 @@
                                         <div class="form-group">
 
                                             <label>Author</label>
-                                            <input type="hidden" name="id" value="">
+                                            <input type="hidden" name="id" value="{{ book.author }}">
                                             <input type="text" class="form-control" name="Title"
                                                    value="">
 
@@ -147,7 +147,7 @@
                                         <div class="form-group">
 
                                             <label>Description</label>
-                                            <input type="hidden" name="id" value="">
+                                            <input type="hidden" name="id" value="{{ book.description }}">
                                             <input type="text" class="form-control" name="Title"
                                                    value="">
 
@@ -157,7 +157,7 @@
                                         <div class="form-group">
 
                                             <label>Language</label>
-                                            <input type="hidden" name="id" value="">
+                                            <input type="hidden" name="id" value=" {{ book.language }}">
                                             <input type="text" class="form-control" name="Title"
                                                    value="">
 
@@ -167,7 +167,7 @@
                                         <div class="form-group">
 
                                             <label>Publication Year</label>
-                                            <input type="hidden" name="id" value="">
+                                            <input type="hidden" name="id" value="{{ book.publication_year }}">
                                             <input type="text" class="form-control" name="Title"
                                                    value="">
 

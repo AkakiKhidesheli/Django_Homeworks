@@ -1,21 +1,33 @@
 {% extends 'base.html' %}
 
-{% block title %} Books {% endblock %}
+{% block title %} Adding Books {% endblock %}
 
 {% block content %}
 
 {% load crispy_forms_tags %}
 
 
+    <div class="container" style="padding-block: 20px">
+        <h2 style="justify-content: center; font-family: 'Noto Serif Georgian', cursive;">
+            <b>📚 You can add books from this page 📚</b>
+        </h2>
+        <div class="row">
+        <!-- Form on the left side -->
+            <div class="col-md-6" style="padding-top: 5px">
+                <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                    <button type="submit" class="btn btn-success mt-3">Add</button>
+                    <a href="{% url 'book_list' %}" class="btn btn-danger mt-3">Cancel</a>
+                </form>
+            </div>
 
-    <form method="post">
-            {% csrf_token %}
-            {{form|crispy}}
-<!--        {{ form.as_p }}-->
-        <button type="submit" class="btn btn-success">Add</button>
-        <a href="{% url 'book_list' %}" class="btn btn-danger">Cancel</a>
-    </form>
-
+        <!-- Image on the right side -->
+            <div class="col-md-6">
+                <img src="https://images.pexels.com/photos/1907784/pexels-photo-1907784.jpeg?cs=srgb&dl=pexels-rickyrecap-1907784.jpg&fm=jpg" alt="Books Image" class="img-fluid rounded">
+            </div>
+        </div>
+    </div>
 
 
 {% endblock %}
