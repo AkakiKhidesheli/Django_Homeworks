@@ -6,7 +6,7 @@ from .forms import BookForm
 # Create your views here.
 
 def book_list(request):
-    books = Books.objects.all()
+    books = Books.objects.all().order_by('id')
     return render(request, 'books/book_list.html', {'books': books})
 
 
