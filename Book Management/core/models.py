@@ -33,6 +33,7 @@ class Books(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     shelf = models.PositiveIntegerField(null=True, blank=True)
     genre = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name='books', null=True, blank=True)
+    cover = models.ImageField(upload_to='book_covers/', null=True, blank=True)
 
     class Meta:
         db_table = 'books'
