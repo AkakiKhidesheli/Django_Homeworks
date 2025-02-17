@@ -10,7 +10,7 @@
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
         </style>
-        <!--    <a class="navbar-brand" style="font-family: 'Madimi One', cursive; font-size: 170%">Library</a>-->
+
         <img src="/media/logo.png" width="60px">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,40 +22,21 @@
                 <li class="nav-item" style="padding-left: 10px">
                     <a class="btn btn-outline-info me-3" aria-current="page" href="{% url 'book_list'%}"
                        style="font-weight: bold; font-family: 'Ubuntu', 'sans-serif'">Home</a>
-                    <!--        </li>-->
-                    <!--        <li class="nav-item">-->
-                    <!--          <a class="nav-link" href="#">Link</a>-->
-                    <!--        </li>-->
-                    <!--        <li class="nav-item dropdown">-->
-                    <!--          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
-                    <!--            Dropdown-->
-                    <!--          </a>-->
-                    <!--          <ul class="dropdown-menu">-->
-                    <!--            <li><a class="dropdown-item" href="#">Action</a></li>-->
-                    <!--            <li><a class="dropdown-item" href="#">Another action</a></li>-->
-                    <!--            <li><hr class="dropdown-divider"></li>-->
-                    <!--            <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-                    <!--          </ul>-->
-                    <!--        </li>-->
-                    <!--        <li class="nav-item">-->
-                    <!--          <a class="nav-link disabled" aria-disabled="true">Disabled</a>-->
-                    <!--        </li>-->
             </ul>
+
             <form class="d-flex" role="search">
-                <!--        <input class="form-control" type="search" placeholder="Search" aria-label="Search">-->
-                <!--        <button class="btn btn-outline-success me-3" type="submit" style="font-family: 'Ubuntu', 'sans-serif'; font-weight: bold">Search</button>-->
 
                 {% if user.is_authenticated %}
                 <div class="dropdown me-3">
                     <button class="btn btn-outline-light dropdown-toggle" type="button" id="usernameDropdown"
                             data-bs-toggle="dropdown" aria-expanded="false"
-                            style="font-family: 'Ubuntu', 'sans-serif'; font-weight: bold; margin-right: 10px">{{ user }}
+                            style="font-family: 'Ubuntu', 'sans-serif'; font-weight: bold; margin-right: 10px">{{ user
+                        }}
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="usernameDropdown">
-                    <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
+                        <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
                     </ul>
                 </div>
-
 
 
                 {% else %}
