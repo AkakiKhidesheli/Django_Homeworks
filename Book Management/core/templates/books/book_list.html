@@ -32,10 +32,13 @@
                          style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
 
                 </div>
-                <form style="padding-left: 77%; padding-bottom: 7px;" class="d-flex" role="search">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                <form style="padding-left: 77%; padding-bottom: 7px;" class="d-flex" role="search" method="get"
+                      action="{% url 'search_book' %}">
+                    <!-- 'name' attribute is set to 'search' to match request.GET['search'] in the view -->
+                    <input class="form-control" type="search" name="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success me-3" type="submit"
-                            style="font-family: 'Ubuntu', 'sans-serif'; font-weight: bold">Search
+                            style="font-family: 'Ubuntu', 'sans-serif'; font-weight: bold">
+                        Search
                     </button>
                 </form>
 
