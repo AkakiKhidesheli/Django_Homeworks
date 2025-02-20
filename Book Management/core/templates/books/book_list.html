@@ -26,24 +26,40 @@
                     </div>
 
 
-                    <img src="/media/library-book-bookshelf-read.jpg"
+                    <img src="/media/backgrounds/378095555_a8514029-ca02-4f75-88ca-5affd797536f.jpg"
                          class="img-thumbnail"
                          alt="..."
-                         style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+                         style="display: block; margin-left: auto; margin-right: auto">
 
                 </div>
-                <form style="padding-left: 77%; padding-bottom: 7px;" class="d-flex" role="search" method="get"
-                      action="{% url 'search_book' %}">
-                    <!-- 'name' attribute is set to 'search' to match request.GET['search'] in the view -->
-                    <input class="form-control" type="search" name="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success me-3" type="submit"
-                            style="font-family: 'Ubuntu', 'sans-serif'; font-weight: bold">
-                        Search
-                    </button>
-                </form>
+                <div class="d-flex justify-content-between">
+    <!-- Previous and Next Page buttons on the left -->
+    <div class="d-flex" style="padding-bottom: 7px">
+        <a class="btn btn-outline-info me-3" aria-current="page" href=""
+                       style="font-weight: bold; font-family: 'Ubuntu', 'sans-serif'">Previous Page</a>
+        <a class="btn btn-outline-info me-3" aria-current="page" href=""
+                       style="font-weight: bold; font-family: 'Ubuntu', 'sans-serif'">Next Page</a>
+
+<!--        <button class="btn btn-outline-primary me-2 w-auto" type="button" onclick="location.href='{{ previous_page_url }}'">-->
+<!--            Previous Page-->
+<!--        </button>-->
+<!--        <button class="btn btn-outline-primary w-auto" type="button" onclick="location.href='{{ next_page_url }}'">-->
+<!--            Next Page-->
+<!--        </button>-->
+    </div>
+
+    <!-- Search form on the right -->
+    <form style="padding-bottom: 7px;" class="d-flex" role="search" method="get">
+        <input class="form-control" type="search" name="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success me-3 w-auto" type="submit" style="font-family: 'Ubuntu', 'sans-serif'; font-weight: bold">
+            Search
+        </button>
+    </form>
+</div>
 
 
-                <table class="table table-hover table-dark">
+
+                <table class="table table-hover table-striped">
 
                     <tr valign="middle" style="font-family: 'Special Elite', 'cursive'">
                         <th>ID</th>
@@ -71,8 +87,8 @@
                         <td>{{ book.author }}</td>
                         <td>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn"
-                                    style="background-color: #0DCAF0; color: black; font-weight: bold"
+                            <button type="button" class="btn btn-light"
+                                    style="font-weight: bold"
                                     data-bs-toggle="modal" data-bs-target="#exampleModal{{ book.id }}">
                                 View Description
                             </button>
@@ -92,7 +108,7 @@
                                             {{ book.description }}
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            <button type="button" class="btn btn-outline-light me-3" data-bs-dismiss="modal" style="font-family: 'Ubuntu', 'sans-serif'; font-weight: bold">
                                                 Close
                                             </button>
                                         </div>
@@ -105,12 +121,12 @@
                         <td>{{ book.genre }}</td>
                         <td>{{ book.shelf }}</td>
                         <td>
-                            <a href="/book/update/{{ book.id }}" class="btn btn-warning btn-xs" data-toggle="modal"
-                               data-target="#modaledit{{ book.id }}">Edit</a>
+                            <a href="/book/update/{{ book.id }}" class="btn btn-warning" data-toggle="modal"
+                               data-target="#modaledit{{ book.id }}" style="font-family: 'Ubuntu', 'sans-serif'; font-weight: bold">Edit</a>
 
-                            <form action="/book/delete/{{ book.id }}/" method="post" style="display: inline;">
+                            <form action="/book/delete/{{ book.id }}/" method="post" style="font-family: 'Ubuntu', 'sans-serif'; font-weight: bolder; display: inline">
                                 {% csrf_token %}
-                                <button class="btn btn-danger btn-xs" type="submit"
+                                <button class="btn btn-danger" type="submit"
                                         onclick="return confirm('Are you sure to delete?')">Delete
                                 </button>
                             </form>
@@ -219,8 +235,11 @@
 
             </div>
 
-
+            <footer style="text-align: center; font-size: 12px; margin-top: 15px; font-weight: bold; padding-bottom: 20px">
+                Images Designed by Freepik
+            </footer>
         </div>
+
 
     </div>
 

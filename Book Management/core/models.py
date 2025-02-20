@@ -1,5 +1,8 @@
 from django.db import models
 
+SHELF_CHOICES = (
+    (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7)
+)
 
 # Create your models here.
 
@@ -31,7 +34,7 @@ class Books(models.Model):
     publication_year = models.PositiveIntegerField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    shelf = models.PositiveIntegerField(null=True, blank=True)
+    shelf = models.PositiveIntegerField(null=True, blank=True, choices=SHELF_CHOICES)
     genre = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name='books', null=True, blank=True)
     cover = models.ImageField(upload_to='book_covers/', null=True, blank=True)
 

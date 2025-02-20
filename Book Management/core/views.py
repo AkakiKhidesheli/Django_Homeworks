@@ -6,7 +6,15 @@ from django.db.models import Q
 # Create your views here.
 
 def book_list(request):
-    books = Books.objects.all().order_by('id')
+    query=request.GET.get('search')
+    if query:
+        books=Books.objects.filter(Q(title__icontains=query) |
+            Q(author__icontains=query) |
+            Q(description__icontains=query) |
+            Q(publication_year__icontains=query) |
+            Q(genre__name__icontains=query))
+    else:
+        books = Books.objects.all().order_by('id')
     return render(request, 'books/book_list.html', {'books': books})
 
 
@@ -44,12 +52,12 @@ def search_book(request):
     books = Books.objects.all().order_by('id')
     if 'search' in request.GET:
         search = request.GET['search']
-        # Using Q to combine queries for multiple fields
         books = Books.objects.filter(
             Q(title__icontains=search) |
             Q(author__icontains=search) |
             Q(description__icontains=search) |
-            Q(publication_year__icontains=search)
+            Q(publication_year__icontains=search) |
+            Q(genre__name__icontains=search)
         )
     return render(request, 'books/book_list.html', {'books': books})
 
