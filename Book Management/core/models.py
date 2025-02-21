@@ -6,7 +6,7 @@ SHELF_CHOICES = (
 
 # Create your models here.
 
-class Categories(models.Model):
+class Category(models.Model):
     name = models.CharField(max_length=200, unique=True)
 
     class Meta:
@@ -16,7 +16,7 @@ class Categories(models.Model):
         return self.name
 
 
-class Languages(models.Model):
+class Language(models.Model):
     name = models.CharField(max_length=50, unique=True)
 
     class Meta:
@@ -26,16 +26,16 @@ class Languages(models.Model):
         return self.name
 
 
-class Books(models.Model):
+class Book(models.Model):
     title = models.CharField(max_length=100, null=False, blank=False)
     author = models.CharField(max_length=100, null=False, blank=False)
     description = models.TextField(null=True, blank=True)
-    language = models.ForeignKey(Languages, on_delete=models.CASCADE, related_name='books', null=True, blank=True)
+    language = models.ForeignKey(Language, on_delete=models.CASCADE, related_name='books', null=True, blank=True)
     publication_year = models.PositiveIntegerField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     shelf = models.PositiveIntegerField(null=True, blank=True, choices=SHELF_CHOICES)
-    genre = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name='books', null=True, blank=True)
+    genre = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='books', null=True, blank=True)
     cover = models.ImageField(upload_to='book_covers/', null=True, blank=True)
 
     class Meta:

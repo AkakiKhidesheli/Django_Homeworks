@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %} Book Details {% endblock %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<!-- Updated background settings for full height and no extra space -->
+<div style="padding-block: 20px; background-image: url('/media/backgrounds/fgjr1.jpg'); background-size: cover; background-position: center; min-height: 100vh;">
+
+    <div class="container" style="padding-block: 20px; display: flex; flex-direction: column; min-height: 100vh;">
+        <h2 style="justify-content: center; font-family: 'Noto Serif Georgian', cursive;">
+            <b>📚 Book Details 📚</b>
+        </h2>
+        <div class="row">
+            <!-- Form on the left side with a white background -->
+            <div class="col-md-6"
+                 style="padding-top: 5px; background-color: rgba(223, 230, 233,0.1); padding: 20px; border-radius: 10px; font-family: 'Ubuntu', cursive;">
+                <form method="get" enctype="multipart/form-data"> <!-- enctype for adding -->
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ book.title }}</h5>
+                            <p class="card-text">{{ book.author }}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Description:</strong> {{ book.description }}</li>
+                            <li class="list-group-item"><strong>Language:</strong> {{ book.language }}</li>
+                            <li class="list-group-item"><strong>Publication Year:</strong> {{ book.publication_year }}</li>
+                            <li class="list-group-item"><strong>Genre:</strong> {{ book.genre }}</li>
+                            <li class="list-group-item"><strong>Shelf:</strong> {{ book.shelf }}</li>
+                        </ul>
+                    </div>
+                    {% if user.is_authenticated and perms.core.add_book %}
+                    <a href="/book/update/{{ book.id }}" class="btn btn-warning mt-3" style="font-weight: bold">Edit</a>
+                    {% else %}
+                    {% endif %}
+                    <a href="{% url 'book_list' %}" class="btn btn-info mt-3" style="font-weight: bold">Back</a>
+
+                </form>
+            </div>
+
+            <!-- Image on the right side -->
+            <div class="col-md-6">
+                {% if book.cover and book.cover.url %}
+                <img src="{{ book.cover.url }}" alt="Books Image" class="img-fluid rounded">
+                {% else %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
