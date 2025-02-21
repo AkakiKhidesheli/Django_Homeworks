@@ -6,6 +6,7 @@ from .models import Book
 
 class BookAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'shelf', 'created_at', 'updated_at')
-
+    search_fields = ('title', )
+    list_filter = ('genre',)
 
 admin.site.register(Book, BookAdmin)
