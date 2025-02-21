@@ -38,7 +38,7 @@ def add_book(request):
 @login_required(login_url='login')
 @book_delete_permission
 def delete_book(request, book_id):
-    book = Books.objects.get(id=book_id)
+    book = Book.objects.get(id=book_id)
     if request.method == 'POST':
         book.delete()
         return redirect('book_list')
@@ -47,7 +47,7 @@ def delete_book(request, book_id):
 @login_required(login_url='login')
 @book_update_permission
 def update_book(request, book_id):
-    book = Books.objects.get(id=book_id)
+    book = Book.objects.get(id=book_id)
     if request.method == 'POST':
         form = BookForm(request.POST, request.FILES, instance=book)
         if form.is_valid():
