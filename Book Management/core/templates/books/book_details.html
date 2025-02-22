@@ -17,8 +17,7 @@
             <!-- Form on the left side with a white background -->
             <div class="col-md-6"
                  style="padding-top: 5px; background-color: rgba(223, 230, 233,0.1); padding: 20px; border-radius: 10px; font-family: 'Ubuntu', cursive;">
-                <form method="post" enctype="multipart/form-data"> <!-- enctype for adding -->
-                    {% csrf_token %}
+                <div> <!-- enctype for adding -->
                     {{ form|crispy }}
                     <div class="card">
                         <div class="card-body">
@@ -38,10 +37,12 @@
                     <!-- Buttons container with flexbox layout -->
                     <div style="display: flex; gap: 10px; margin-top: 20px;">
                         <a href="/book/update/{{ book.id }}" class="btn btn-warning" style="font-weight: bold;">Edit</a>
-                        <form action="/book/delete/{{ book.id }}/" method="post"
+<!--                        <a href="/book/delete/{{ book.id }}" class="btn btn-danger" style="font-weight: bold;">Delete</a>-->
+                        <form action="{% url 'delete_book' book_id=book.id %}" method="post"
                                   style="font-family: 'Ubuntu', 'sans-serif'; font-weight: bolder; display: inline-block; margin-left: 5px;">
-                                <button class="btn btn-danger" type="submit"
-                                        onclick="return confirm('Are you sure to delete?')">Delete
+                            {% csrf_token %}
+                            <button class="btn btn-danger" type="submit"
+                                        >Delete
                                 </button>
                             </form>
                         <a href="{% url 'book_list' %}" class="btn btn-info" style="font-weight: bold;">Back</a>
@@ -50,7 +51,7 @@
                     <a href="{% url 'book_list' %}" class="btn btn-info" style="font-weight: bold;">Back</a>
                     {% endif %}
 
-                </form>
+                </div>
             </div>
 
             <!-- Image on the right side -->

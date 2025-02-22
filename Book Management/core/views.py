@@ -55,7 +55,7 @@ def update_book(request, book_id):
             return redirect('book_list')
     else:
         form = BookForm(instance=book)
-        return render(request, 'books/update_book.html', {'form': form})
+        return render(request, 'books/update_book.html', {'form': form, 'book': book})
 
 
 # def search_book(request):

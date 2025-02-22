@@ -7,7 +7,9 @@ def book_delete_permission(function):
             return function(request, *args, **kwargs)
         else:
             return HttpResponseForbidden('You do not have permission to perform this action.')
+
     return wrapper
+
 
 def book_update_permission(function):
     def wrapper(request, *args, **kwargs):
@@ -15,7 +17,9 @@ def book_update_permission(function):
             return function(request, *args, **kwargs)
         else:
             return HttpResponseForbidden('You do not have permission to perform this action.')
+
     return wrapper
+
 
 def book_add_permission(function):
     def wrapper(request, *args, **kwargs):
@@ -23,4 +27,5 @@ def book_add_permission(function):
             return function(request, *args, **kwargs)
         else:
             return HttpResponseForbidden('You do not have permission to perform this action.')
+
     return wrapper
