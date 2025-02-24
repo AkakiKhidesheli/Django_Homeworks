@@ -38,12 +38,12 @@
                     <div style="display: flex; gap: 10px; margin-top: 20px;">
                         <a href="/book/update/{{ book.id }}" class="btn btn-warning" style="font-weight: bold;">Edit</a>
                         <form action="{% url 'delete_book' book_id=book.id %}" method="post"
-                                  style="font-family: 'Ubuntu', 'sans-serif'; font-weight: bolder; display: inline-block; margin-left: 5px;">
+                              style="font-family: 'Ubuntu', 'sans-serif'; font-weight: bolder; display: inline-block;">
                             {% csrf_token %}
                             <button class="btn btn-danger" type="submit"
-                                        >Delete
+                                        onclick="return confirm('Are you sure to delete?')">Delete
                                 </button>
-                            </form>
+                        </form>
                         <a href="{% url 'book_list' %}" class="btn btn-info" style="font-weight: bold;">Back</a>
                     </div>
                     {% else %}
@@ -56,7 +56,8 @@
             <!-- Image on the right side -->
             <div class="col-md-6">
                 {% if book.cover and book.cover.url %}
-                <img src="{{ book.cover.url }}" alt="Books Image" class="img-fluid rounded">
+                <img src="{{ book.cover.url }}" alt="Books Image" class="img-fluid rounded"
+                     style="max-height: 500px; width: auto;">
                 {% else %}
                 {% endif %}
             </div>
