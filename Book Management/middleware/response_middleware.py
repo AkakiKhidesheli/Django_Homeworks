@@ -17,6 +17,6 @@ class ResponseMiddleware:
         response_time = response_end - response_start
 
         print(f'{self.green}Response Time: {self.reset}{response_time} '
-              f'{self.yellow}Address:{self.reset} {request.path} '
+              f'{self.yellow}Address:{self.reset} {request.get_full_path()} '
               f'{self.pink}Method:{self.reset} {request.method}')
         return response

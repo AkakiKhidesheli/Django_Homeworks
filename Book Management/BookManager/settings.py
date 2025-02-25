@@ -136,16 +136,25 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
         'verbose': {
             'format': '{levelname} {asctime} {module}: {message}',
             'style': '{',
         }
     },
     'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
         'file': {
             'class': 'logging.FileHandler',
             'formatter': 'verbose',
             'filename': BASE_DIR / 'django.log',
+            'encoding': 'utf-8'
         },
     },
     'loggers': {
@@ -155,9 +164,10 @@ LOGGING = {
         },
         'authentication': {
             'handlers': ['file'],
+            'level': 'DEBUG',
         },
-        'django': {
-            'handlers': ['file'],
-        }
+        # 'django': {
+        #     'handlers': ['console'],
+        # }
     }
 }
