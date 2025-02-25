@@ -36,18 +36,8 @@ def book_list(request):
     else:
         books = Book.objects.all().order_by('id')
 
-
     return render(request, 'books/book_list.html', {'books': books})
 
-    # if searching_title and searching_author:
-    #     books = Book.objects.filter(
-    #         Q(title__icontains=searching_title) & Q(author__icontains=searching_author)).order_by('id')
-    # elif searching_title:
-    #     books = Book.objects.filter(Q(title__icontains=searching_title)).order_by('id')
-    # elif searching_author:
-    #     books = Book.objects.filter(Q(author__icontains=searching_author))
-    # else:
-    #     books = Book.objects.all().order_by('id')
 
 
 @login_required(login_url='login')
