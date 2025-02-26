@@ -35,17 +35,23 @@
                 <div class="d-flex justify-content-between">
                     <!-- Previous and Next Page buttons on the left -->
                     <div class="d-flex" style="padding-bottom: 7px">
-                        <a class="btn btn-outline-info me-3" aria-current="page" href=""
+                        {% if books.has_previous %}
+                        <a class="btn btn-primary me-3"
+                           href="{% if title or author %}?search_title={{ title }}{% if author %}&search_author={{ author }}{% endif %}&page=1{% else %}?page=1{% endif %}"
+                           style="font-weight: bold; font-family: 'Ubuntu', 'sans-serif'">First Page</a>
+                        <a class="btn btn-primary me-3"
+                           href="{% if title or author %}?search_title={{ title }}{% if author %}&search_author={{ author }}{% endif %}&page={{ books.previous_page_number }}{% else %}?page={{ books.previous_page_number }}{% endif %}"
                            style="font-weight: bold; font-family: 'Ubuntu', 'sans-serif'">Previous Page</a>
-                        <a class="btn btn-outline-info me-3" aria-current="page" href=""
-                           style="font-weight: bold; font-family: 'Ubuntu', 'sans-serif'">Next Page</a>
+                        {% endif %}
 
-                        <!--        <button class="btn btn-outline-primary me-2 w-auto" type="button" onclick="location.href='{{ previous_page_url }}'">-->
-                        <!--            Previous Page-->
-                        <!--        </button>-->
-                        <!--        <button class="btn btn-outline-primary w-auto" type="button" onclick="location.href='{{ next_page_url }}'">-->
-                        <!--            Next Page-->
-                        <!--        </button>-->
+                        {% if books.has_next %}
+                        <a class="btn btn-primary me-3"
+                           href="{% if title or author %}?search_title={{ title }}{% if author %}&search_author={{ author }}{% endif %}&page={{ books.next_page_number }}{% else %}?page={{ books.next_page_number }}{% endif %}"
+                           style="font-weight: bold; font-family: 'Ubuntu', 'sans-serif'">Next Page</a>
+                        <a class="btn btn-primary me-3"
+                           href="{% if title or author %}?search_title={{ title }}{% if author %}&search_author={{ author }}{% endif %}&page={{ books.paginator.num_pages }}{% else %}?page={{ books.paginator.num_pages }}{% endif %}"
+                           style="font-weight: bold; font-family: 'Ubuntu', 'sans-serif'">Last Page</a>
+                        {% endif %}
                     </div>
 
                     <!-- Search form on the right -->
@@ -129,7 +135,7 @@
                         <td>{{ book.language }}</td>
                         <td>{{ book.genre }}</td>
                         <td>{{ book.shelf }}</td>
-                        <td style="white-space: nowrap;">
+                        <td style="white-space: nowrap; text-align: center;">
                             {% if user.is_authenticated and perms.core.delete_book %}
                             <a href="/book/{{ book.id }}" class="btn btn-info" data-toggle="modal"
                                data-target="#modaledit{{ book.id }}"

@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Book
 from .forms import BookForm
@@ -21,10 +22,10 @@ def book_list(request):
 
     if title and author:
         filters &= Q(title__icontains=title) & Q(author__icontains=author)
-        logger.info(f'Search Title: {title}, Search Author: {author}, IP: {request.META.get('REMOTE_ADDR')}')
+        logger.info(f'Search Title: "{title}", Search Author: {author}, IP: {request.META.get('REMOTE_ADDR')}')
     elif title:
         filters |= Q(title__icontains=title)
-        logger.info(f'Search Title: {title}, IP: {request.META.get('REMOTE_ADDR')}')
+        logger.info(f'Search Title: "{title}", IP: {request.META.get('REMOTE_ADDR')}')
     elif author:
         filters |= Q(author__icontains=author)
         logger.info(f'Search Author: {author}, IP: {request.META.get('REMOTE_ADDR')}')
@@ -36,8 +37,19 @@ def book_list(request):
     else:
         books = Book.objects.all().order_by('id')
 
-    return render(request, 'books/book_list.html', {'books': books})
+    items_per_page = 10
+    page = request.GET.get('page', 1)
+    paginator = Paginator(books, items_per_page)
 
+    try:
+        books_page = paginator.page(page)
+    except PageNotAnInteger:
+        books_page = paginator.page(1)
+    except EmptyPage:
+        books_page = paginator.page(paginator.num_pages)
+
+    return render(request, 'books/book_list.html',
+                  {'books': books_page, 'title': title, 'author': author})
 
 
 @login_required(login_url='login')
@@ -61,11 +73,11 @@ def add_book(request):
 def delete_book(request, book_id):
     book = get_object_or_404(Book, id=book_id)
 
-    logger.info(f'Started Deleting Book {book.title} by {book.author}, IP: {request.META.get('REMOTE_ADDR')}')
+    logger.info(f'Started Deleting Book "{book.title}" by {book.author}, IP: {request.META.get('REMOTE_ADDR')}')
 
     if request.method == 'POST':
         book.delete()
-        logger.info(f'Deleted Book {book.title} by {book.author}, IP: {request.META.get('REMOTE_ADDR')}')
+        logger.info(f'Deleted Book "{book.title}" by {book.author}, IP: {request.META.get('REMOTE_ADDR')}')
         return redirect('book_list')
 
 
@@ -73,12 +85,12 @@ def delete_book(request, book_id):
 @book_update_permission
 def update_book(request, book_id):
     book = Book.objects.get(id=book_id)
-    logger.info(f'Started Editing Book {book.title} by {book.author}, IP: {request.META.get('REMOTE_ADDR')}')
+    logger.info(f'Started Editing Book "{book.title}" by {book.author}, IP: {request.META.get('REMOTE_ADDR')}')
     if request.method == 'POST':
         form = BookForm(request.POST, request.FILES, instance=book)
         if form.is_valid():
             book = form.save()
-            logger.info(f'Edited Book {book.title} by {book.author}, IP: {request.META.get('REMOTE_ADDR')}')
+            logger.info(f'Edited Book "{book.title}" by {book.author}, IP: {request.META.get('REMOTE_ADDR')}')
             return redirect('book_details', pk=book_id)
         else:
             logger.warning(f'Invalid form')
@@ -88,21 +100,7 @@ def update_book(request, book_id):
         return render(request, 'books/update_book.html', {'form': form, 'book': book})
 
 
-# def search_book(request):
-#     books = Books.objects.all().order_by('id')
-#     if 'search_title' in request.GET:
-#         search = request.GET['search_title']
-#         books = Books.objects.filter(
-#             Q(title__icontains=search) |
-#             Q(author__icontains=search) |
-#             Q(description__icontains=search) |
-#             Q(publication_year__icontains=search) |
-#             Q(genre__name__icontains=search)
-#         )
-#     return render(request, 'books/book_list.html', {'books': books})
-
-
 def book_details(request, pk):
     book = get_object_or_404(Book, pk=pk)
-    logger.info(f'Viewing Book {book.title} by {book.author}, IP: {request.META.get('REMOTE_ADDR')}')
+    logger.info(f'Viewing Book "{book.title}" by {book.author}, IP: {request.META.get('REMOTE_ADDR')}')
     return render(request, 'books/book_details.html', {'book': book})

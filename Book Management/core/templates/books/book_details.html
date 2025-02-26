@@ -37,13 +37,39 @@
                     <!-- Buttons container with flexbox layout -->
                     <div style="display: flex; gap: 10px; margin-top: 20px;">
                         <a href="/book/update/{{ book.id }}" class="btn btn-warning" style="font-weight: bold;">Edit</a>
-                        <form action="{% url 'delete_book' book_id=book.id %}" method="post"
-                              style="font-family: 'Ubuntu', 'sans-serif'; font-weight: bolder; display: inline-block;">
-                            {% csrf_token %}
-                            <button class="btn btn-danger" type="submit"
-                                        onclick="return confirm('Are you sure to delete?')">Delete
-                                </button>
-                        </form>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#deleteModal">
+                            Delete
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete the book: <strong>{{ book.title }}</strong> by
+                                        {{ book.author }}?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel
+                                        </button>
+                                        <!-- Form to send POST request for deletion -->
+                                        <form action="{% url 'delete_book' book.id %}" method="post"
+                                              style="display:inline;">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <a href="{% url 'book_list' %}" class="btn btn-info" style="font-weight: bold;">Back</a>
                     </div>
                     {% else %}
