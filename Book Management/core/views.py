@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Book
+from .models import Book, Category, Language
 from .forms import BookForm
 from django.db.models import Q
 from .permissions import book_delete_permission, book_update_permission, book_add_permission
@@ -17,6 +17,10 @@ def book_list(request):
 
     title = request.GET.get('search_title')
     author = request.GET.get('search_author')
+    genre_id = request.GET.get('genre')
+    genres = Category.objects.all()
+    language_id = request.GET.get('language')
+    languages = Language.objects.all()
 
     filters = Q()
 
@@ -30,10 +34,21 @@ def book_list(request):
         filters |= Q(author__icontains=author)
         logger.info(f'Search Author: {author}, IP: {request.META.get('REMOTE_ADDR')}')
 
-    if title or author:
+    if genre_id:
+        genre = Category.objects.filter(id=genre_id)
+        genre = genre.first()
+        logger.info(f'Search Genre: {genre}, IP: {request.META.get('REMOTE_ADDR')}')
+        filters &= Q(genre_id=genre_id)
+
+    if language_id:
+        language = Language.objects.filter(id=language_id)
+        language = language.first()
+        logger.info(f'Search Language: {language}, IP: {request.META.get('REMOTE_ADDR')}')
+        filters &= Q(language_id=language_id)
+
+    if title or author or genre_id or language_id:
         books = Book.objects.filter(filters).order_by('id')
         logger.info(f'Books found: {books.count()}')
-
     else:
         books = Book.objects.all().order_by('id')
 
@@ -48,8 +63,15 @@ def book_list(request):
     except EmptyPage:
         books_page = paginator.page(paginator.num_pages)
 
-    return render(request, 'books/book_list.html',
-                  {'books': books_page, 'title': title, 'author': author})
+    return render(request, 'books/book_list.html', {
+        'books': books_page,
+        'title': title,
+        'author': author,
+        'genre_id': genre_id,
+        'genres': genres,
+        'language_id': language_id,
+        'languages': languages,
+    })
 
 
 @login_required(login_url='login')

@@ -5,6 +5,9 @@
 
 {% load static %}  <!-- This loads the static files -->
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Georgian:wght@100..900&family=Special+Elite&display=swap');
+</style>
 
 <div style="background-image: url('/media/backgrounds/44420740_9067415.jpg'); background-size: cover; background-position: center; min-height: 100vh;">
 
@@ -32,30 +35,10 @@
                          style="display: block; margin-left: auto; margin-right: auto">
 
                 </div>
-                <div class="d-flex justify-content-between">
-                    <!-- Previous and Next Page buttons on the left -->
-                    <div class="d-flex" style="padding-bottom: 7px">
-                        {% if books.has_previous %}
-                        <a class="btn btn-primary me-3"
-                           href="{% if title or author %}?search_title={{ title }}{% if author %}&search_author={{ author }}{% endif %}&page=1{% else %}?page=1{% endif %}"
-                           style="font-weight: bold; font-family: 'Ubuntu', 'sans-serif'">First Page</a>
-                        <a class="btn btn-primary me-3"
-                           href="{% if title or author %}?search_title={{ title }}{% if author %}&search_author={{ author }}{% endif %}&page={{ books.previous_page_number }}{% else %}?page={{ books.previous_page_number }}{% endif %}"
-                           style="font-weight: bold; font-family: 'Ubuntu', 'sans-serif'">Previous Page</a>
-                        {% endif %}
+                <div class="d-flex justify-content-between" style="height: 40px; margin-bottom: 20px">
+                    {% include 'paginator.html' %}
 
-                        {% if books.has_next %}
-                        <a class="btn btn-primary me-3"
-                           href="{% if title or author %}?search_title={{ title }}{% if author %}&search_author={{ author }}{% endif %}&page={{ books.next_page_number }}{% else %}?page={{ books.next_page_number }}{% endif %}"
-                           style="font-weight: bold; font-family: 'Ubuntu', 'sans-serif'">Next Page</a>
-                        <a class="btn btn-primary me-3"
-                           href="{% if title or author %}?search_title={{ title }}{% if author %}&search_author={{ author }}{% endif %}&page={{ books.paginator.num_pages }}{% else %}?page={{ books.paginator.num_pages }}{% endif %}"
-                           style="font-weight: bold; font-family: 'Ubuntu', 'sans-serif'">Last Page</a>
-                        {% endif %}
-                    </div>
-
-                    <!-- Search form on the right -->
-                    <form style="padding-bottom: 7px" class="d-flex" role="search" method="get">
+                    <form class="d-flex" role="search" method="get">
                         <input class="form-control me-2" type="search" name="search_title" placeholder="Title"
                                aria-label="search"
                                style="font-family: 'Ubuntu', 'sans-serif'; font-weight: bold; width: 170px;">
@@ -78,8 +61,48 @@
                         <th>Title</th>
                         <th>Author</th>
                         <th>Description</th>
-                        <th>Language</th>
-                        <th>Genre</th>
+                        <th style="white-space: nowrap;" height="55px">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <span>Language</span>
+                                <div class="dropdown">
+                                    <button class="btn btn-light dropdown" type="button" data-bs-toggle="dropdown"
+                                            aria-expanded="false"
+                                            style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; padding: 0;">
+                                        <img src="/media/filter_logo.png" alt="Image Description"
+                                             style="width: 12px; height: 12px;"/>
+                                    </button>
+
+                                    <ul class="dropdown-menu">
+                                        {% for language in languages %}
+                                        <li><a class="dropdown-item" href="?language={{ language.id }}">
+                                            {{ language.name }}
+                                        </a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </th>
+
+                        <th style="white-space: nowrap;" height="55px">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <span>Genre</span>
+                                <div class="dropdown">
+                                    <button class="btn btn-light dropdown" type="button" data-bs-toggle="dropdown"
+                                            aria-expanded="false"
+                                            style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; padding: 0;">
+                                        <img src="/media/filter_logo.png" alt="Image Description"
+                                             style="width: 12px; height: 12px;"/>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        {% for genre in genres %}
+                                        <li><a class="dropdown-item" href="?genre={{ genre.id }}">{{ genre.name }}</a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </th>
+
                         <th>Shelf</th>
                         <th style="font-family: 'Noto Serif Georgian', 'cursive'; text-align: center; vertical-align: middle;">
                             <a href="{% url 'add_book' %}">
@@ -259,6 +282,8 @@
 
 
                 </table>
+                {% include 'paginator.html' %}
+
 
             </div>
 
