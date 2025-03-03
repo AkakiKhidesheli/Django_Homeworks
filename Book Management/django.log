@@ -1731,3 +1731,95 @@ INFO 2025-03-01 20:23:06,973 views: Viewing Index Page, IP: 127.0.0.1
 INFO 2025-03-01 22:56:51,469 views: Viewing Index Page, IP: 127.0.0.1
 INFO 2025-03-01 22:56:53,306 views: Viewing Index Page, IP: 127.0.0.1
 INFO 2025-03-01 22:56:55,807 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 21:49:09,166 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 21:49:56,722 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 21:50:04,931 views: Viewing Book "წყალში" by პოლა ჰოკინსი, IP: 127.0.0.1
+INFO 2025-03-03 21:58:30,523 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 21:58:33,306 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-03 21:58:38,504 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-03 21:58:41,336 views: Logged in user 'akaki', IP: 127.0.0.1
+INFO 2025-03-03 21:58:41,352 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 21:58:47,102 views: Viewing Book "წყალში" by პოლა ჰოკინსი, IP: 127.0.0.1
+INFO 2025-03-03 21:58:52,337 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:01:03,829 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:02:01,831 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:02:42,776 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:02:52,731 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:02:57,229 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:03:00,592 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:04:53,087 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:06:59,914 views: Viewing Book "წყალში" by პოლა ჰოკინსი, IP: 127.0.0.1
+INFO 2025-03-03 22:12:31,162 views: Viewing Book "წყალში" by პოლა ჰოკინსი, IP: 127.0.0.1
+INFO 2025-03-03 22:12:35,092 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:12:38,593 views: Viewing Book "წყალში" by პოლა ჰოკინსი, IP: 127.0.0.1
+INFO 2025-03-03 22:12:41,567 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:13:34,900 views: Viewing Book "წყალში" by პოლა ჰოკინსი, IP: 127.0.0.1
+INFO 2025-03-03 22:14:25,935 views: Viewing Book "წყალში" by პოლა ჰოკინსი, IP: 127.0.0.1
+INFO 2025-03-03 22:14:31,387 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:14:33,964 views: Viewing Book "წყალში" by პოლა ჰოკინსი, IP: 127.0.0.1
+INFO 2025-03-03 22:14:37,022 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:14:41,946 views: Logging out user 'akaki', IP: 127.0.0.1
+INFO 2025-03-03 22:14:41,954 views: Logged out user, IP: 127.0.0.1
+INFO 2025-03-03 22:14:41,998 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:14:44,107 views: Viewing Book "წყალში" by პოლა ჰოკინსი, IP: 127.0.0.1
+INFO 2025-03-03 22:14:46,910 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:16:15,945 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:16:18,946 views: Viewing Book "წყალში" by პოლა ჰოკინსი, IP: 127.0.0.1
+INFO 2025-03-03 22:16:22,000 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:16:26,696 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-03 22:16:33,660 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-03 22:16:38,812 views: Logged in user 'akaki', IP: 127.0.0.1
+INFO 2025-03-03 22:16:38,845 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:16:45,667 views: Viewing Book "წყალში" by პოლა ჰოკინსი, IP: 127.0.0.1
+INFO 2025-03-03 22:16:47,354 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:19:47,150 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:19:59,328 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:20:07,247 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:20:37,276 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:20:42,203 views: Logging out user 'akaki', IP: 127.0.0.1
+INFO 2025-03-03 22:20:42,207 views: Logged out user, IP: 127.0.0.1
+INFO 2025-03-03 22:20:42,216 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:20:46,779 views: Viewing Book "წყალში" by პოლა ჰოკინსი, IP: 127.0.0.1
+INFO 2025-03-03 22:20:48,648 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-03 22:20:53,825 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-03 22:20:57,046 views: Logged in user 'akaki', IP: 127.0.0.1
+INFO 2025-03-03 22:20:57,065 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:21:04,263 views: Viewing Book "წყალში" by პოლა ჰოკინსი, IP: 127.0.0.1
+INFO 2025-03-03 22:21:08,023 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:21:35,193 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:21:37,287 views: Viewing Book "წყალში" by პოლა ჰოკინსი, IP: 127.0.0.1
+INFO 2025-03-03 22:21:40,538 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:23:11,154 views: Viewing Book "ნურასდროს დაბრუნდები" by ლი ჩაილდი, IP: 127.0.0.1
+INFO 2025-03-03 22:23:12,974 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:23:16,549 views: Viewing Book "ღამის სკოლა" by ლი ჩაილდი, IP: 127.0.0.1
+INFO 2025-03-03 22:23:23,183 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:24:18,690 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:37:28,228 views: Viewing Book "წყალში" by პოლა ჰოკინსი, IP: 127.0.0.1
+INFO 2025-03-03 22:37:30,288 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:38:13,504 views: Viewing Book "იდუმალებით მოცული საქმე სთაილზში / ფარდა: პუაროს უკანასკნელი საქმე" by აგათა კრისტი, IP: 127.0.0.1
+INFO 2025-03-03 22:38:16,624 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:49:11,214 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:49:51,222 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:49:53,471 views: Viewing Book "წყალში" by პოლა ჰოკინსი, IP: 127.0.0.1
+INFO 2025-03-03 22:49:58,290 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 22:51:39,681 views: Viewing Book "იდუმალებით მოცული საქმე სთაილზში / ფარდა: პუაროს უკანასკნელი საქმე" by აგათა კრისტი, IP: 127.0.0.1
+INFO 2025-03-03 22:51:44,835 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 23:01:37,099 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 23:01:45,821 views: Viewing Book "ერკიულ პუაროს ქრისტეშობა" by აგათა კრისტი, IP: 127.0.0.1
+INFO 2025-03-03 23:01:55,771 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 23:02:01,877 views: Logging out user 'akaki', IP: 127.0.0.1
+INFO 2025-03-03 23:02:01,877 views: Logged out user, IP: 127.0.0.1
+INFO 2025-03-03 23:02:01,893 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 23:02:55,576 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 23:02:57,764 views: Logging out user 'akaki', IP: 127.0.0.1
+INFO 2025-03-03 23:02:57,771 views: Logged out user, IP: 127.0.0.1
+INFO 2025-03-03 23:02:57,778 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 23:03:01,329 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-03 23:03:05,845 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-03 23:03:09,042 views: Logged in user 'asdasd', IP: 127.0.0.1
+INFO 2025-03-03 23:03:09,053 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 23:03:46,242 views: Viewing Book "ერკიულ პუაროს ქრისტეშობა" by აგათა კრისტი, IP: 127.0.0.1
+INFO 2025-03-03 23:03:57,593 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 23:04:25,728 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-03 23:04:30,016 views: Viewing Book "ერკიულ პუაროს ქრისტეშობა" by აგათა კრისტი, IP: 127.0.0.1
+INFO 2025-03-03 23:04:34,162 views: Viewing Index Page, IP: 127.0.0.1

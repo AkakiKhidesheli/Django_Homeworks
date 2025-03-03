@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 SHELF_CHOICES = (
@@ -37,6 +38,23 @@ class Book(models.Model):
     shelf = models.PositiveIntegerField(null=True, blank=True, choices=SHELF_CHOICES)
     genre = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='books', null=True, blank=True)
     cover = models.ImageField(upload_to='book_covers/', null=True, blank=True)
+    book_count = models.PositiveIntegerField(null=True, blank=True)
 
     class Meta:
         db_table = 'books'
+
+    def not_in_stock(self):
+        if self.book_count <= 0:
+            return True
+        else:
+            return False
+
+
+
+class BookLibrary(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='books_library')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='books_library')
+    book_count = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        unique_together = ('book', 'user')

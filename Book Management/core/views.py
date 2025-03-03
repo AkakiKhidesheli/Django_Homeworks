@@ -1,11 +1,14 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Book, Category, Language
+from .models import Book, Category, Language, BookLibrary
 from .forms import BookForm
 from django.db.models import Q
 from .permissions import book_delete_permission, book_update_permission, book_add_permission
 import logging
+from django.core.mail import send_mail
+from django.conf import settings
 
 logger = logging.getLogger(__name__)
 
@@ -126,3 +129,26 @@ def book_details(request, pk):
     book = get_object_or_404(Book, pk=pk)
     logger.info(f'Viewing Book "{book.title}" by {book.author}, IP: {request.META.get('REMOTE_ADDR')}')
     return render(request, 'books/book_details.html', {'book': book})
+
+@login_required(login_url='login')
+def buy_book(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+
+    if book.not_in_stock():
+        return HttpResponse(f'{book.title} is not in stock')
+
+    book_library, created = BookLibrary.objects.get_or_create(book=book, user=request.user)
+
+    if created:
+        book_library.book_count = 1
+    else:
+        book_library.book_count += 1
+
+    book_library.save()
+
+    book.book_count -= 1
+    book.save()
+
+    send_mail('Order Confirmation', f'{request.user.username} has successfully bought book "{book.title}" by {book.author}', settings.DEFAULT_FROM_EMAIL, [request.user.email], fail_silently=False)
+
+    return redirect('book_list')

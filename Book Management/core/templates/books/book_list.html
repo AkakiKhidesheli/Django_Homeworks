@@ -104,6 +104,7 @@
                         </th>
 
                         <th>Shelf</th>
+                        <th>Quantity</th>
                         <th style="font-family: 'Noto Serif Georgian', 'cursive'; text-align: center; vertical-align: middle;">
                             <a href="{% url 'add_book' %}">
                                 <button type="button" class="btn btn-success" data-toggle="modal"
@@ -158,6 +159,7 @@
                         <td>{{ book.language }}</td>
                         <td>{{ book.genre }}</td>
                         <td>{{ book.shelf }}</td>
+                        <td>{{ book.book_count }}</td>
                         <td style="white-space: nowrap; text-align: center;">
                             {% if user.is_authenticated and perms.core.delete_book %}
                             <a href="/book/{{ book.id }}" class="btn btn-info" data-toggle="modal"
