@@ -9,6 +9,7 @@ from .permissions import book_delete_permission, book_update_permission, book_ad
 import logging
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib import messages
 
 logger = logging.getLogger(__name__)
 
@@ -135,7 +136,8 @@ def buy_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
 
     if book.not_in_stock():
-        return HttpResponse(f'{book.title} is not in stock')
+        messages.error(request, 'Book not available')
+        return redirect('/')
 
     book_library, created = BookLibrary.objects.get_or_create(book=book, user=request.user)
 

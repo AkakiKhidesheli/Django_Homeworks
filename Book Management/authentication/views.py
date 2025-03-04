@@ -8,6 +8,7 @@ from .forms import RegistrationForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 import logging
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 # Create your views here.
 
@@ -80,12 +81,17 @@ def reset_password(request):
     if request.method == "POST":
         form = PasswordResetForm(request.POST)
         if form.is_valid():
+            email = form.cleaned_data["email"]
+            if not User.objects.filter(email=email).exists():
+                messages.error(request, "User with this email does not exist.")
+                return redirect("reset_password")
             form.save(
                 request = request,
                 use_https = False,
                 email_template_name = 'registration/password_reset_email.html',
             )
-            return HttpResponse('Password reset form is sent. Please, check your email')
+            messages.success(request, 'Password reset form is sent. Please, check your email')
+            return redirect('reset_password')
     else:
         form = PasswordResetForm()
         return render(request, 'registration/password_reset.html', {'form': form})
@@ -106,9 +112,11 @@ def reset_password_confirm(request, uidb64, token):
             else:
                 form = SetPasswordForm(user=user)
         else:
-            return HttpResponse('Invalid token')
+            messages.error(request, 'Invalid Password.')
+            return redirect('/')
 
     except (ValueError, TypeError, User.DoesNotExist):
+        messages.error(request, f'Invalid mail.')
         return redirect('/')
 
     return render(request, 'registration/password_reset_confirmation.html', {'form': form})

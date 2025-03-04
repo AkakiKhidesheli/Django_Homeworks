@@ -32,8 +32,19 @@
                     <img src="/media/backgrounds/378095555_a8514029-ca02-4f75-88ca-5affd797536f.jpg"
                          class="img-thumbnail"
                          alt="..."
-                         style="display: block; margin-left: auto; margin-right: auto">
+                         style="display: block; margin-left: auto; margin-right: auto;">
 
+                    {% if messages %}
+                        <div style="padding-top: 20px">
+                            {% for message in messages %}
+                                {% if "success" in message.tags %}
+                                    <div class="alert alert-success">{{ message }}</div>
+                                {% elif "error" in message.tags %}
+                                    <div class="alert alert-danger">{{ message }}</div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        </div>
                 </div>
                 <div class="d-flex justify-content-between" style="height: 40px; margin-bottom: 20px">
                     {% include 'paginator.html' %}

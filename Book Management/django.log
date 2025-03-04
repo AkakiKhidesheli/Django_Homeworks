@@ -1910,3 +1910,49 @@ INFO 2025-03-04 01:05:55,470 views: Started Login, IP: 127.0.0.1
 INFO 2025-03-04 01:05:56,079 views: Logged in user 'akaki', IP: 127.0.0.1
 INFO 2025-03-04 01:05:58,892 views: Logged in user 'akaki', IP: 127.0.0.1
 INFO 2025-03-04 01:05:58,906 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 10:33:47,502 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 10:33:57,301 views: Logging out user 'akaki', IP: 127.0.0.1
+INFO 2025-03-04 10:33:57,308 views: Logged out user, IP: 127.0.0.1
+INFO 2025-03-04 10:33:57,320 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 10:34:00,283 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-04 10:36:36,735 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 10:36:38,171 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 10:36:40,649 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-04 10:47:24,701 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 10:47:27,718 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-04 10:48:21,593 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 10:50:08,425 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 10:50:21,515 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 10:50:24,931 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-04 10:50:34,446 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 10:51:04,356 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 10:51:06,285 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-04 10:52:57,180 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 10:52:59,818 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-04 11:13:25,030 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-04 11:27:48,785 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 11:27:51,680 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-04 11:28:01,630 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-04 11:28:04,581 views: Logged in user 'akaki', IP: 127.0.0.1
+INFO 2025-03-04 11:28:04,615 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 11:28:08,958 views: Viewing Book "ღამის სკოლა" by ლი ჩაილდი, IP: 127.0.0.1
+INFO 2025-03-04 11:28:11,755 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 11:28:48,499 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 11:28:51,227 views: Viewing Book "ღამის სკოლა" by ლი ჩაილდი, IP: 127.0.0.1
+INFO 2025-03-04 11:28:52,973 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 11:29:03,459 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 11:30:04,507 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 11:30:46,397 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 11:30:51,529 views: Viewing Book "ღამის სკოლა" by ლი ჩაილდი, IP: 127.0.0.1
+INFO 2025-03-04 11:30:53,441 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 11:31:15,483 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 11:31:20,488 views: Viewing Book "ღამის სკოლა" by ლი ჩაილდი, IP: 127.0.0.1
+INFO 2025-03-04 11:31:22,451 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 11:37:26,119 views: Logging out user 'akaki', IP: 127.0.0.1
+INFO 2025-03-04 11:37:26,126 views: Logged out user, IP: 127.0.0.1
+INFO 2025-03-04 11:37:26,142 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 11:37:30,645 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-04 11:39:10,191 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-04 11:39:13,660 views: Viewing Index Page, IP: 127.0.0.1
+INFO 2025-03-04 11:39:17,239 views: Started Registering User, IP: 127.0.0.1
+INFO 2025-03-04 11:39:23,138 views: Started Login, IP: 127.0.0.1
