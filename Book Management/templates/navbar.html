@@ -41,7 +41,11 @@
                     <ul class="dropdown-menu" aria-labelledby="usernameDropdown">
                         <li style="text-align: start; padding-left: 20px; padding-block: 5px">{{ user }}</li>
                         <li><a class="dropdown-item" href="/auth/change_password">Change Password</a></li>
-                        <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
+                        <li>
+                            <form action="{% url 'logout' %}" method="post">
+                                <button type="submit" class="dropdown-item">Logout</button>
+                            </form>
+                        </li>
                     </ul>
                     {% else %}
                     <ul class="dropdown-menu" aria-labelledby="usernameDropdown">

@@ -181,3 +181,5 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'khidesheli.akaki@gmail.com'
 EMAIL_HOST_PASSWORD = 'fbidhqlwilmmmais'
 DEFAULT_FROM_EMAIL = 'khidesheli.akaki@gmail.com'
+
+LOGIN_REDIRECT_URL = '/'

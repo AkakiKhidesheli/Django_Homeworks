@@ -1956,3 +1956,37 @@ INFO 2025-03-04 11:39:10,191 views: Started Login, IP: 127.0.0.1
 INFO 2025-03-04 11:39:13,660 views: Viewing Index Page, IP: 127.0.0.1
 INFO 2025-03-04 11:39:17,239 views: Started Registering User, IP: 127.0.0.1
 INFO 2025-03-04 11:39:23,138 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-07 20:17:14,441 views: Books found: 0
+INFO 2025-03-07 20:17:19,402 views: Books found: 7
+INFO 2025-03-07 20:28:10,887 views: Books found: 0
+INFO 2025-03-07 20:28:18,776 views: Books found: 3
+INFO 2025-03-07 20:28:26,200 views: Books found: 11
+INFO 2025-03-07 20:28:31,610 views: Books found: 11
+INFO 2025-03-07 20:28:36,154 views: Books found: 0
+INFO 2025-03-07 20:33:24,210 views: Books found: 0
+INFO 2025-03-07 20:33:27,881 views: Books found: 11
+INFO 2025-03-07 20:33:30,556 views: Books found: 0
+INFO 2025-03-07 20:33:38,837 views: Books found: 11
+INFO 2025-03-07 20:33:46,604 views: Books found: 3
+INFO 2025-03-07 21:30:05,310 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-07 21:30:34,085 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-07 21:30:35,545 views: Logged in user 'akaki', IP: 127.0.0.1
+INFO 2025-03-07 21:56:55,754 views: Logging out user 'akaki', IP: 127.0.0.1
+INFO 2025-03-07 21:56:55,754 views: Logged out user, IP: 127.0.0.1
+INFO 2025-03-07 21:57:16,654 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-07 21:57:26,546 views: Started Login, IP: 127.0.0.1
+INFO 2025-03-07 21:57:30,831 views: Logged in user 'asdasdasd', IP: 127.0.0.1
+INFO 2025-03-07 22:00:51,945 views: Logging out user 'asdasdasd', IP: 127.0.0.1
+INFO 2025-03-07 22:00:51,948 views: Logged out user, IP: 127.0.0.1
+INFO 2025-03-07 22:01:30,059 views: Logging out user 'akaki', IP: 127.0.0.1
+INFO 2025-03-07 22:01:30,059 views: Logged out user, IP: 127.0.0.1
+INFO 2025-03-07 22:02:02,393 views: Logging out user 'akaki', IP: 127.0.0.1
+INFO 2025-03-07 22:02:02,393 views: Logged out user, IP: 127.0.0.1
+INFO 2025-03-07 22:02:36,710 views: Logging out user 'akaki', IP: 127.0.0.1
+INFO 2025-03-07 22:02:36,716 views: Logged out user, IP: 127.0.0.1
+INFO 2025-03-07 22:03:23,783 views: Logging out user 'akaki', IP: 127.0.0.1
+INFO 2025-03-07 22:03:23,786 views: Logged out user, IP: 127.0.0.1
+INFO 2025-03-07 22:04:20,843 views: Logging out user 'akaki', IP: 127.0.0.1
+INFO 2025-03-07 22:04:20,843 views: Logged out user, IP: 127.0.0.1
+INFO 2025-03-07 22:04:40,628 views: Logging out user 'akaki', IP: 127.0.0.1
+INFO 2025-03-07 22:04:40,631 views: Logged out user, IP: 127.0.0.1
