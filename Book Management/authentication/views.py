@@ -1,4 +1,6 @@
 from django.contrib.auth.tokens import default_token_generator
+from django.contrib.auth.views import LoginView, LogoutView
+from django.urls import reverse_lazy
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm
@@ -9,55 +11,68 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 import logging
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.views.generic import CreateView
 
 # Create your views here.
 
 logger = logging.getLogger(__name__)
 
-def register_user(request):
-    logger.info(f"Started Registering User, IP: {request.META.get('REMOTE_ADDR')}")
-    if request.method == "POST":
-        form = RegistrationForm(request.POST)
+class RegisterUserView(CreateView):
+    model = User
+    form_class = RegistrationForm
+    template_name = 'registration/registration.html'
+    success_url = reverse_lazy('login')
 
-        if form.is_valid():
-            form.save()
-            logger.info(f"Registered user '{form.cleaned_data["username"]}', IP: {request.META.get('REMOTE_ADDR')}")
-            return redirect('book_list')
-        else:
-            logger.error(f"Invalid form, IP: {request.META.get('REMOTE_ADDR')}")
-            return render(request, 'registration/registration.html', {'form': form})
+class LoginUserView(LoginView):
+    template_name = 'registration/login.html'
 
-    else:
-        form = RegistrationForm()
-        return render(request, 'registration/registration.html', {'form': form})
+class LogoutUserView(LogoutView):
+    next_page = reverse_lazy('book_list')
 
-
-def login_user(request):
-    logger.info(f"Started Login, IP: {request.META.get('REMOTE_ADDR')}")
-    if request.method == "POST":
-        form = AuthenticationForm(request=request, data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-
-            user = authenticate(request, username=username, password=password)
-
-            if user is not None:
-                login(request, user)
-                logger.info(f"Logged in user '{username}', IP: {request.META.get('REMOTE_ADDR')}")
-                return redirect('book_list')
-
-    else:
-        form = AuthenticationForm()
-
-    return render(request, 'registration/login.html', {'form': form})
+# def register_user(request):
+#     logger.info(f"Started Registering User, IP: {request.META.get('REMOTE_ADDR')}")
+#     if request.method == "POST":
+#         form = RegistrationForm(request.POST)
+#
+#         if form.is_valid():
+#             form.save()
+#             logger.info(f"Registered user '{form.cleaned_data["username"]}', IP: {request.META.get('REMOTE_ADDR')}")
+#             return redirect('book_list')
+#         else:
+#             logger.error(f"Invalid form, IP: {request.META.get('REMOTE_ADDR')}")
+#             return render(request, 'registration/registration.html', {'form': form})
+#
+#     else:
+#         form = RegistrationForm()
+#         return render(request, 'registration/registration.html', {'form': form})
 
 
-def logout_user(request):
-    logger.info(f"Logging out user '{request.user}', IP: {request.META.get('REMOTE_ADDR')}")
-    logout(request)
-    logger.info(f"Logged out user, IP: {request.META.get('REMOTE_ADDR')}")
-    return redirect('book_list')
+# def login_user(request):
+#     logger.info(f"Started Login, IP: {request.META.get('REMOTE_ADDR')}")
+#     if request.method == "POST":
+#         form = AuthenticationForm(request=request, data=request.POST)
+#         if form.is_valid():
+#             username = form.cleaned_data.get('username')
+#             password = form.cleaned_data.get('password')
+#
+#             user = authenticate(request, username=username, password=password)
+#
+#             if user is not None:
+#                 login(request, user)
+#                 logger.info(f"Logged in user '{username}', IP: {request.META.get('REMOTE_ADDR')}")
+#                 return redirect('book_list')
+#
+#     else:
+#         form = AuthenticationForm()
+#
+#     return render(request, 'registration/login.html', {'form': form})
+
+#
+# def logout_user(request):
+#     logger.info(f"Logging out user '{request.user}', IP: {request.META.get('REMOTE_ADDR')}")
+#     logout(request)
+#     logger.info(f"Logged out user, IP: {request.META.get('REMOTE_ADDR')}")
+#     return redirect('book_list')
 
 @login_required(login_url='login')
 def change_password(request):
