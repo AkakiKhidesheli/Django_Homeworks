@@ -83,9 +83,11 @@ class BookDetailView(DetailView):
     context_object_name = 'book'
     template_name = 'books/book_details.html'
 
+
 class DeleteBookView(DeleteView):
     model = Book
     success_url = reverse_lazy('book_list')
+
 
 class UpdateBookView(UpdateView):
     model = Book
@@ -95,6 +97,64 @@ class UpdateBookView(UpdateView):
     def get_success_url(self):
         success_url = reverse_lazy('book_details', kwargs={'pk': self.object.pk})
         return success_url
+
+
+from django.shortcuts import get_object_or_404, redirect
+from django.contrib import messages
+from django.urls import reverse_lazy
+from django.core.mail import send_mail
+from django.conf import settings
+from django.views.generic import UpdateView
+from .models import Book, BookLibrary
+
+class BuyBookView(UpdateView):
+    model = BookLibrary
+    fields = []
+    template_name = 'books/confirmation.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        book_id = self.kwargs.get('pk')
+        book = get_object_or_404(Book, pk=book_id)
+
+        if book.not_in_stock():
+            messages.error(self.request, 'Book not available')
+            return redirect('/')
+
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_object(self, queryset=None):
+        book_id = self.kwargs.get('pk')
+        book = get_object_or_404(Book, pk=book_id)
+        user = self.request.user
+
+        book_library, created = BookLibrary.objects.get_or_create(book=book, user=user)
+
+        if created:
+            book_library.book_count = 1
+        else:
+            book_library.book_count += 1
+
+        book_library.save()
+
+        book.book_count -= 1
+        book.save()
+
+        send_mail(
+            'Order Confirmation',
+            f'{self.request.user.username} has successfully bought book "{book.title}" by {book.author}',
+            settings.DEFAULT_FROM_EMAIL,
+            [self.request.user.email],
+            fail_silently=False
+        )
+
+        return book_library
+
+    def form_valid(self, form):
+        messages.success(self.request, "Book purchased successfully!")
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('book_list')
 
 
 # def book_list(request):
@@ -213,28 +273,28 @@ class UpdateBookView(UpdateView):
 #     return render(request, 'books/book_details.html', {'book': book})
 
 
-@login_required(login_url='login')
-def buy_book(request, pk):
-    book = get_object_or_404(Book, pk=pk)
-
-    if book.not_in_stock():
-        messages.error(request, 'Book not available')
-        return redirect('/')
-
-    book_library, created = BookLibrary.objects.get_or_create(book=book, user=request.user)
-
-    if created:
-        book_library.book_count = 1
-    else:
-        book_library.book_count += 1
-
-    book_library.save()
-
-    book.book_count -= 1
-    book.save()
-
-    send_mail('Order Confirmation',
-              f'{request.user.username} has successfully bought book "{book.title}" by {book.author}',
-              settings.DEFAULT_FROM_EMAIL, [request.user.email], fail_silently=False)
-
-    return redirect('book_list')
+# @login_required(login_url='login')
+# def buy_book(request, pk):
+#     book = get_object_or_404(Book, pk=pk)
+#
+#     if book.not_in_stock():
+#         messages.error(request, 'Book not available')
+#         return redirect('/')
+#
+#     book_library, created = BookLibrary.objects.get_or_create(book=book, user=request.user)
+#
+#     if created:
+#         book_library.book_count = 1
+#     else:
+#         book_library.book_count += 1
+#
+#     book_library.save()
+#
+#     book.book_count -= 1
+#     book.save()
+#
+#     send_mail('Order Confirmation',
+#               f'{request.user.username} has successfully bought book "{book.title}" by {book.author}',
+#               settings.DEFAULT_FROM_EMAIL, [request.user.email], fail_silently=False)
+#
+#     return redirect('book_list')
