@@ -1,5 +1,6 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.tokens import default_token_generator
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordResetConfirmView
 from django.urls import reverse_lazy
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.decorators import login_required
@@ -28,6 +29,20 @@ class LoginUserView(LoginView):
 
 class LogoutUserView(LogoutView):
     next_page = reverse_lazy('book_list')
+
+class ChangePasswordView(LoginRequiredMixin, PasswordChangeView):
+    login_url = reverse_lazy('login')
+    template_name = 'registration/change_password.html'
+    success_url = reverse_lazy('book_list')
+
+class ResetPasswordView(PasswordChangeView):
+    template_name = 'registration/password_reset.html'
+    email_template_name = 'registration/password_reset_email.html'
+    success_url = reverse_lazy('login')
+
+class ResetPasswordConfirmView(PasswordResetConfirmView):
+    template_name = 'registration/password_reset_confirmation.html'
+    success_url = reverse_lazy('login')
 
 # def register_user(request):
 #     logger.info(f"Started Registering User, IP: {request.META.get('REMOTE_ADDR')}")
@@ -74,64 +89,64 @@ class LogoutUserView(LogoutView):
 #     logger.info(f"Logged out user, IP: {request.META.get('REMOTE_ADDR')}")
 #     return redirect('book_list')
 
-@login_required(login_url='login')
-def change_password(request):
-    if request.method == "POST":
-        form = PasswordChangeForm(user=request.user, data=request.POST)
-        if form.is_valid():
-            form.save()
-
-            update_session_auth_hash(request, request.user)
-
-            return redirect('book_list')
-        else:
-            return render(request, 'registration/change_password.html', {'form': form})
-    else:
-        form = PasswordChangeForm(user=request.user)
-
-        return render(request, 'registration/change_password.html', {'form': form})
-
-
-def reset_password(request):
-    if request.method == "POST":
-        form = PasswordResetForm(request.POST)
-        if form.is_valid():
-            email = form.cleaned_data["email"]
-            if not User.objects.filter(email=email).exists():
-                messages.error(request, "User with this email does not exist.")
-                return redirect("reset_password")
-            form.save(
-                request = request,
-                use_https = False,
-                email_template_name = 'registration/password_reset_email.html',
-            )
-            messages.success(request, 'Password reset form is sent. Please, check your email')
-            return redirect('reset_password')
-    else:
-        form = PasswordResetForm()
-        return render(request, 'registration/password_reset.html', {'form': form})
+# @login_required(login_url='login')
+# def change_password(request):
+#     if request.method == "POST":
+#         form = PasswordChangeForm(user=request.user, data=request.POST)
+#         if form.is_valid():
+#             form.save()
+#
+#             update_session_auth_hash(request, request.user)
+#
+#             return redirect('book_list')
+#         else:
+#             return render(request, 'registration/change_password.html', {'form': form})
+#     else:
+#         form = PasswordChangeForm(user=request.user)
+#
+#         return render(request, 'registration/change_password.html', {'form': form})
 
 
-def reset_password_confirm(request, uidb64, token):
-    try:
-        id = urlsafe_base64_decode(uidb64).decode()
-        user = User.objects.get(id=id)
+# def reset_password(request):
+#     if request.method == "POST":
+#         form = PasswordResetForm(request.POST)
+#         if form.is_valid():
+#             email = form.cleaned_data["email"]
+#             if not User.objects.filter(email=email).exists():
+#                 messages.error(request, "User with this email does not exist.")
+#                 return redirect("reset_password")
+#             form.save(
+#                 request = request,
+#                 use_https = False,
+#                 email_template_name = 'registration/password_reset_email.html',
+#             )
+#             messages.success(request, 'Password reset form is sent. Please, check your email')
+#             return redirect('reset_password')
+#     else:
+#         form = PasswordResetForm()
+#         return render(request, 'registration/password_reset.html', {'form': form})
 
-        if default_token_generator.check_token(user, token):
-            if request.method == "POST":
-                form = SetPasswordForm(user=user, data=request.POST)
-                if form.is_valid():
-                    form.save()
 
-                    return redirect('login')
-            else:
-                form = SetPasswordForm(user=user)
-        else:
-            messages.error(request, 'Invalid Password.')
-            return redirect('/')
-
-    except (ValueError, TypeError, User.DoesNotExist):
-        messages.error(request, f'Invalid mail.')
-        return redirect('/')
-
-    return render(request, 'registration/password_reset_confirmation.html', {'form': form})
+# def reset_password_confirm(request, uidb64, token):
+#     try:
+#         id = urlsafe_base64_decode(uidb64).decode()
+#         user = User.objects.get(id=id)
+#
+#         if default_token_generator.check_token(user, token):
+#             if request.method == "POST":
+#                 form = SetPasswordForm(user=user, data=request.POST)
+#                 if form.is_valid():
+#                     form.save()
+#
+#                     return redirect('login')
+#             else:
+#                 form = SetPasswordForm(user=user)
+#         else:
+#             messages.error(request, 'Invalid Password.')
+#             return redirect('/')
+#
+#     except (ValueError, TypeError, User.DoesNotExist):
+#         messages.error(request, f'Invalid mail.')
+#         return redirect('/')
+#
+#     return render(request, 'registration/password_reset_confirmation.html', {'form': form})

@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -8,10 +9,16 @@ from .forms import BookForm
 from django.db.models import Q
 from .permissions import book_delete_permission, book_update_permission, book_add_permission
 import logging
+from django.conf import settings
+from django.views.generic import View, ListView, DetailView, CreateView, UpdateView, DeleteView
+from .mixins import AddBookMixin, DeleteBookMixin, UpdateBookMixin
+from django.shortcuts import get_object_or_404, redirect
+from django.contrib import messages
+from django.urls import reverse_lazy
 from django.core.mail import send_mail
 from django.conf import settings
-from django.contrib import messages
-from django.views.generic import View, ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import UpdateView
+from .models import Book, BookLibrary
 
 logger = logging.getLogger(__name__)
 
@@ -64,11 +71,12 @@ class BookListView(ListView):
         return context
 
 
-class CreateBookView(CreateView):
+class AddBookView(LoginRequiredMixin, AddBookMixin, CreateView):
     model = Book
     form_class = BookForm
     template_name = 'books/add_book.html'
     success_url = reverse_lazy('book_list')
+    login_url = reverse_lazy('login')
 
     def form_valid(self, form):
         book = form.save()
@@ -84,33 +92,30 @@ class BookDetailView(DetailView):
     template_name = 'books/book_details.html'
 
 
-class DeleteBookView(DeleteView):
+class DeleteBookView(LoginRequiredMixin, DeleteBookMixin, DeleteView):
     model = Book
     success_url = reverse_lazy('book_list')
+    # login_url = reverse_lazy('login')
 
 
-class UpdateBookView(UpdateView):
+class UpdateBookView(LoginRequiredMixin, UpdateBookMixin, UpdateView):
     model = Book
     form_class = BookForm
     template_name = 'books/update_book.html'
+    # login_url = reverse_lazy('login')
 
     def get_success_url(self):
         success_url = reverse_lazy('book_details', kwargs={'pk': self.object.pk})
         return success_url
 
 
-from django.shortcuts import get_object_or_404, redirect
-from django.contrib import messages
-from django.urls import reverse_lazy
-from django.core.mail import send_mail
-from django.conf import settings
-from django.views.generic import UpdateView
-from .models import Book, BookLibrary
 
-class BuyBookView(UpdateView):
+
+class BuyBookView(LoginRequiredMixin, UpdateView):
     model = BookLibrary
     fields = []
     template_name = 'books/confirmation.html'
+    login_url = reverse_lazy('login')
 
     def dispatch(self, request, *args, **kwargs):
         book_id = self.kwargs.get('pk')
@@ -150,7 +155,6 @@ class BuyBookView(UpdateView):
         return book_library
 
     def form_valid(self, form):
-        messages.success(self.request, "Book purchased successfully!")
         return super().form_valid(form)
 
     def get_success_url(self):
