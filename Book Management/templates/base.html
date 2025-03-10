@@ -9,64 +9,12 @@
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body id="other-element" data-bs-theme="light">
-<!--<script src="/static/js/darkmode.js"></script>-->
 {% include 'navbar.html'%}
 {% block content %}
 {% endblock %}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-<!--<script>-->
-<!--    document.addEventListener("DOMContentLoaded", function () {-->
-<!--        const themeToggle = document.getElementById("toggle");-->
-<!--        themeToggle.addEventListener("change", function () {-->
-<!--            document.body.dataset.bsTheme = this.checked ? "dark" : "light";-->
-<!--            localStorage.setItem("theme", this.checked ? "dark" : "light");-->
-<!--        });-->
-
-<!--        // Load saved theme-->
-<!--        if (localStorage.getItem("theme") === "dark") {-->
-<!--            document.body.dataset.bsTheme = "dark";-->
-<!--            themeToggle.checked = true;-->
-<!--        }-->
-<!--    });-->
-<!--</script>-->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const themeToggle = document.getElementById("toggle");
-        const body = document.body;
-        const buttons = document.querySelectorAll(".theme-button");
-
-        function updateButtonTheme() {
-            if (body.dataset.bsTheme === "dark") {
-                buttons.forEach(btn => {
-                    btn.classList.remove("btn-spiro-disco-ball");
-                    btn.classList.add("btn-light");
-                });
-            } else {
-                buttons.forEach(btn => {
-                    btn.classList.remove("btn-light");
-                    btn.classList.add("btn-spiro-disco-ball");
-                })
-                }
-        }
-
-        themeToggle.addEventListener("change", function () {
-            body.dataset.bsTheme = this.checked ? "dark" : "light";
-            localStorage.setItem("theme", this.checked ? "dark" : "light");
-            updateButtonTheme();
-        });
-
-        // Load saved theme
-        if (localStorage.getItem("theme") === "dark") {
-            body.dataset.bsTheme = "dark";
-            themeToggle.checked = true;
-        }
-
-        updateButtonTheme(); // Apply styles on page load
-    });
-</script>
-
-
+<script src="{% static 'js/darkmode.js' %}"></script>
 </body>
 </html>
