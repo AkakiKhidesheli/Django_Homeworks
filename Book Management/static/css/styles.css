@@ -9,16 +9,7 @@
     border-color: #0fbcf9 !important;
 }
 
-
-/*.btn-fresh-turquoise{*/
-/*    background-color: #34e7e4 !important;*/
-/*    color: black !important;*/
-/*    border-color: #34e7e4 !important;*/
-/*}*/
-
-
-/*.btn-fresh-turquoise {*/
-/*    background-color: #34e7e4 !important;*/
-/*    border-color: #34e7e4 !important;*/
-/*}*/
-
+.table {
+    border-radius: 10px;
+    overflow: hidden;
+}

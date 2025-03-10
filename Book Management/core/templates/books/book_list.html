@@ -69,9 +69,9 @@
 
                     <tr valign="middle" style="font-family: 'Special Elite', 'cursive'">
                         <th>ID</th>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Description</th>
+                        <th style="width: 350px">Title</th>
+                        <th style="width: 100px">Author</th>
+                        <th style="width: 200px">Description</th>
                         <th style="white-space: nowrap;" height="55px">
                             <div style="display: flex; align-items: center; gap: 10px;">
                                 <span>Language</span>
@@ -132,14 +132,14 @@
                     {% for book in books %}
                     <tr style="font-family: 'Noto Serif Georgian', cursive;" valign="middle">
                         <td>{{ book.id }}</td>
-                        <td>{{ book.title }}</td>
-                        <td>{{ book.author }}</td>
-                        <td>
+                        <td style="width: 350px">{{ book.title }}</td>
+                        <td style="width: 100px">{{ book.author }}</td>
+                        <td style="width: 200px">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn theme-button"
-                                    style="font-weight: bold"
+                                    style="font-weight: bold; width: 160px"
                                     data-bs-toggle="modal" data-bs-target="#exampleModal{{ book.id }}">
-                                View Description
+                                View<br>Description
                             </button>
 
 
