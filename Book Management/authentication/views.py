@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.tokens import default_token_generator
-from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordResetConfirmView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordResetConfirmView, \
+    PasswordResetView
 from django.urls import reverse_lazy
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.decorators import login_required
@@ -35,7 +36,7 @@ class ChangePasswordView(LoginRequiredMixin, PasswordChangeView):
     template_name = 'registration/change_password.html'
     success_url = reverse_lazy('book_list')
 
-class ResetPasswordView(PasswordChangeView):
+class ResetPasswordView(PasswordResetView):
     template_name = 'registration/password_reset.html'
     email_template_name = 'registration/password_reset_email.html'
     success_url = reverse_lazy('login')
