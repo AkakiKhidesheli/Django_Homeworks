@@ -76,11 +76,11 @@
                             <div style="display: flex; align-items: center; gap: 10px;">
                                 <span>Language</span>
                                 <div class="dropdown">
-                                    <button class="btn btn-light dropdown" type="button" data-bs-toggle="dropdown"
+                                    <button class="btn dropdown" type="button" data-bs-toggle="dropdown"
                                             aria-expanded="false"
-                                            style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; padding: 0;">
+                                            style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; padding: 0;">
                                         <img src="/media/filter_logo.png" alt="Image Description"
-                                             style="width: 12px; height: 12px;"/>
+                                             style="width: 36px; height: 36px; padding-bottom: 5px"/>
                                     </button>
 
                                     <ul class="dropdown-menu">
@@ -98,11 +98,11 @@
                             <div style="display: flex; align-items: center; gap: 10px;">
                                 <span>Genre</span>
                                 <div class="dropdown">
-                                    <button class="btn btn-light dropdown" type="button" data-bs-toggle="dropdown"
+                                     <button class="btn dropdown" type="button" data-bs-toggle="dropdown"
                                             aria-expanded="false"
-                                            style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; padding: 0;">
+                                            style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; padding: 0;">
                                         <img src="/media/filter_logo.png" alt="Image Description"
-                                             style="width: 12px; height: 12px;"/>
+                                             style="width: 36px; height: 36px; padding-bottom: 5px"/>
                                     </button>
                                     <ul class="dropdown-menu">
                                         {% for genre in genres %}
@@ -136,11 +136,12 @@
                         <td>{{ book.author }}</td>
                         <td>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-light"
+                            <button type="button" class="btn theme-button"
                                     style="font-weight: bold"
                                     data-bs-toggle="modal" data-bs-target="#exampleModal{{ book.id }}">
                                 View Description
                             </button>
+
 
 
                             <!-- Modal -->
